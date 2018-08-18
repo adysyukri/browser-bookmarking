@@ -1,6 +1,6 @@
 <template>
     <div class="home-content">
-        <v-container v-if="bookList.length <= 0" text-xs-center>
+        <v-container v-if="bookList.length <= 0 || bookList == null" text-xs-center>
             <v-layout row>
                 <v-flex xs12>
                     <div>No book to show. Please add book.</div> 

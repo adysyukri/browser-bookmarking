@@ -74,8 +74,7 @@ export default {
                     bookTitle : this.bookTitle,
                     author: this.author,
                     totalPages: this.totalPages,
-                    readPages: this.readPages,
-                    id: this.bookArray.length
+                    readPages: this.readPages
                     // this.$store.dispatch('addBook',{
                     //     bookTitle: this.bookTitle,
                     //     author: this.author,

@@ -18,13 +18,11 @@ export default {
     },
     watch: {
         buttonText(text){
-            console.log(text)
             if (text === 'Add book'){
                 this.componentName = 'appHomeBody'
             }else if (text === 'Back'){
                 this.componentName = 'appAddPage'
             }
-            console.log(this.componentName)
             this.$store.dispatch('changeComponentTag', this.componentName)
         },
         componentTag(value){

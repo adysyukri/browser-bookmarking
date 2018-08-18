@@ -25,8 +25,7 @@ export const store = new Vuex.Store({
                 bookTitle: payload.bookTitle,
                 author: payload.author,
                 totalPages: payload.totalPages,
-                readPages: payload.readPages,
-                id: books.length
+                readPages: payload.readPages
             }
 
             books.push(bookAdded)
