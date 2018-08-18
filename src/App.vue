@@ -1,28 +1,39 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <app-navbar></app-navbar>
+      <component 
+      :is="componentTag" 
+      ></component>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Navbar from './components/Navbar'
+import AddPage from './components/AddPage'
+import HomeBody from './components/Home/HomeBody'
 
 export default {
-  name: 'app',
+  data() {
+    return {
+      selectedComponent: 'appHomeBody'
+    }
+  },
   components: {
-    HelloWorld
+    appNavbar: Navbar,
+    appAddPage: AddPage,
+    appHomeBody: HomeBody
+  },
+  computed: {
+    componentTag(){
+      return this.$store.getters.loadComponentTag
+    }
+  },
+  beforeCreated() {
+    this.$store.dispatch("fetchBooks");
   }
+  
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
