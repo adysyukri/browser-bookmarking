@@ -1,6 +1,6 @@
 <template>
     <div class="home-content">
-        <v-container v-if="bookList.length <= 0 || bookList == null" text-xs-center>
+        <v-container v-if="bookList == null || bookList.length <= 0 " text-xs-center>
             <v-layout row>
                 <v-flex xs12>
                     <div>No book to show. Please add book.</div> 
@@ -66,6 +66,11 @@ export default {
         appEditModal: EditModal
     },
     beforeCreate(){
+        let books = JSON.parse(localStorage.getItem('bookstore'))
+
+        if (!books){
+            localStorage.setItem('bookstore', JSON.stringify([]))
+        }        
         this.$store.dispatch('fetchBooks')
     },
     computed: {
@@ -77,19 +82,23 @@ export default {
         removeBook(book){
             let decide = confirm('Do you really want to remove this book?')
             if(decide){
-                console.log('removing')
-                console.log(book)
                 this.$store.dispatch('removeBook', book)
             }
-            this.bookList = this.$store.getters.loadBooks
+            //this.bookList = this.$store.getters.loadBooks
         }
     },
     beforeMount(){
-        this.bookList = this.booksAll
+        if (this.booksAll){
+            this.bookList = this.booksAll
+        } else {
+            this.bookList = []
+        }
+        
     },
     watch: {
         booksAll(books){
             this.bookList = books
+            
         }
     }
 };
